@@ -1,0 +1,41 @@
+# Phase 1 — SimCLR pre-training on CIFAR-10
+# All hyperparameters used in the final 200-epoch run
+
+model:
+  backbone: resnet18
+  projection_dim: 128        # z dimension after projection head
+  hidden_dim: 512            # h dimension (encoder output)
+  projection_hidden_dim: 512 # MLP hidden layer in projection head
+
+training:
+  epochs: 200
+  batch_size: 512
+  temperature: 0.5           # tau for NT-Xent loss
+  learning_rate: 0.001       # peak LR after warmup
+  warmup_epochs: 9
+  lr_start: 0.0002           # LR at epoch 1
+  weight_decay: 1.0e-4
+  optimizer: adam
+
+data:
+  dataset: cifar10
+  num_workers: 4
+  use_labels: false          # unsupervised — labels never used
+
+augmentation:
+  color_jitter: true
+  color_jitter_strength: 0.5
+  random_crop: true
+  crop_scale: [0.2, 1.0]
+  horizontal_flip: true
+  gaussian_blur: true
+  blur_sigma: [0.1, 2.0]
+  grayscale_prob: 0.2
+
+checkpointing:
+  save_every: 5              # save checkpoint every N epochs
+  checkpoint_dir: simclr_checkpoints
+
+evaluation:
+  linear_probe_epochs: 100
+  linear_probe_lr: 0.01

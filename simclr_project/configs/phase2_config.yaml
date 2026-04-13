@@ -1,0 +1,42 @@
+# Phase 2 — Cross-domain evaluation on Logged MNIST + Colour Invariance
+
+encoder:
+  checkpoint: simclr_checkpoints/checkpoint_epoch_200.pth
+  feature_dim: 512
+  frozen: true               # zero encoder params updated
+
+logged_mnist:
+  rotations: [-45, -30, -15, 0, 15, 30, 45]
+  image_size: 32             # match CIFAR-10 resolution
+  output_dir: phase2_outputs
+  csv_path: phase2_outputs/logged_mnist_metadata.csv
+
+logged_colour_mnist:
+  colours: [red, blue, green, orange, purple, cyan, white]
+  reference_colour: red
+  image_size: 32
+  save_images: false         # set true to save 70k PNG files to disk
+  save_dir: phase2_outputs/logged_colour_mnist
+
+evaluation:
+  batch_size: 512
+  num_workers: 2
+
+linear_probe:
+  epochs: 30
+  learning_rate: 0.01
+  optimizer: adam
+  num_classes: 10
+
+invariance:
+  reference_angle: 0
+  comparison_angle: 45
+  target_score: 0.80
+
+colour_invariance:
+  reference_colour: red
+  target_score: 0.80
+
+results:
+  output_dir: results/phase2
+  json_file: results/phase2/phase2_results.json
