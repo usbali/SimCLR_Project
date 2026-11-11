@@ -1,4 +1,4 @@
-AuthorsUtkarsh Singh ·
+Author - Utkarsh Singh ·
 Supervisor - Pierre Marza and Professor Maria Vakalopoulou 
 Institution-CentraleSupélec, Université Paris-SaclayDateApril 2026
 </div>
