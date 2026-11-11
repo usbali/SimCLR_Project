@@ -1,4 +1,6 @@
-AuthorsUtkarsh Singh · Arvind Siddhart ReddySupervisorPierre MarzaProfessorMaria VakalopoulouInstitutionCentraleSupélec, Université Paris-SaclayDateApril 2026
+AuthorsUtkarsh Singh ·
+Supervisor - Pierre Marza and Professor Maria Vakalopoulou 
+Institution-CentraleSupélec, Université Paris-SaclayDateApril 2026
 </div>
 
 What this project does
@@ -19,14 +21,20 @@ Key scientific finding: Colour invariance (CI = 0.9953) is substantially higher 
 
 Results at a glance
 Phase 1 — CIFAR-10 linear probe
-MethodArchitectureAccuracyRandom baseline—10.00%SimCLR (ours, 200 ep)ResNet-1885.96%SimCLR published rangeResNet-1880–88%Fully supervised (upper bound)ResNet-18~93%
+Method Architecture Accuracy 
+Random baseline—10.00%SimCLR (ours, 200 ep),ResNet-1885.96%SimCLR published rangeResNet-18 is 80–88%
+Fully supervised (upper bound)ResNet-18~93%
 Phase 2 — Rotation invariance (Logged MNIST)
-MetricValueTargetRotation invariance score (IS)0.878> 0.80✅ PASSIS std deviation0.059——MNIST linear probe accuracy95.66%> 80%✅ PASSEncoder params updated00 (frozen)✅
+MetricValue Target Rotation invariance score (IS)0.878> 0.80 PASS 
+(IS) std deviation-0.059
+MNIST linear probe accuracy-95.66%> 80% PASS
+Encoder params  (frozen)
 
 The MNIST probe (95.66%) exceeds the fully supervised CIFAR-10 baseline (~93%), despite the encoder never seeing a single MNIST image during training.
 
 Phase 2 extension — Colour invariance (Logged Colour MNIST)
-MetricValueTargetColour invariance score (CI)0.9953> 0.80✅ PASSCI std deviation0.0004——CI − IS (trained vs emergent gap)+0.117CI > IS✅
+Metric Value Target Colour invariance score-> (CI)0.9953 > 0.80 
+CI std deviation-0.0004——CI − IS (trained vs emergent gap)+ 0.117 CI > IS
 
 Repository structure
 simclr_project/
@@ -35,7 +43,7 @@ simclr_project/
 │   ├── phase1_config.yaml          # all Phase 1 hyperparameters
 │   └── phase2_config.yaml          # Phase 2 + colour invariance settings
 │
-├── phase1/                         ← Utkarsh Singh
+├── phase1/                         
 │   ├── data/
 │   │   └── augmentations.py        # SimCLR two-view augmentation pipeline
 │   ├── models/
@@ -52,7 +60,7 @@ simclr_project/
 │       ├── checkpointing.py        # save/load, load_encoder() strips proj head
 │       └── metrics.py              # AverageMeter, top1_accuracy
 │
-├── phase2/                         ← Siddhart Reddy
+├── phase2/                         
 │   ├── dataset/
 │   │   └── logged_mnist.py         # builds 70,000 rotated digit images
 │   ├── evaluation/
